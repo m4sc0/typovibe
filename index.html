@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoVibe</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./src/icons/typovibe-icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./src/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body class="dark-theme bg-neutral-800 w-screen h-screen overflow-hidden">
+    <!-- <nav>
+    <div class="navbar-button"><i class="bi bi-plus-lg"></i></div>
+  </nav> -->
+    <div id="app" class="w-full h-full flex">
+      <aside class="text-white w-64 overflow-y-auto">
+        <!-- <button id="new-note" class="p-2 bg-blue-500">
+          <i class="bi bi-plus-lg"></i>
+        </button> -->
+        <ul id="note-list" class=""></ul>
+        <p id="save-status" class="mt-auto text-sm text-green-400">Saved</p>
+      </aside>
+      <main id="main" class="p-4 flex-1 flex flex-col overflow-hidden">
+        <input
+          type="text"
+          id="title"
+          placeholder="Title"
+          class="outline-none border-none bg-transparent text-white text-3xl font-semibold w-full py-2 pb-4"
+        />
+        <textarea
+          id="body"
+          placeholder="Body"
+          class="w-full flex-1 bg-transparent text-white rounded resize-none outline-none border-none overflow-y-auto"
+        ></textarea>
+      </main>
+    </div>
+
+    <div
+      id="command-palette"
+      class="fixed top-10 left-1/2 transform -translate-x-1/2 text-white p-2 rounded-xl hidden z-50 w-[50vw] bg-transparent/20 backdrop-blur-sm"
+    >
+      <input
+        type="text"
+        id="command-input"
+        placeholder="Type a command..."
+        class="w-full p-1 mb-2 border-none rounded bg-transparent text-white placeholder:text-neutral-600 outline-none"
+      />
+      <div id="command-results" class="flex flex-col gap-1"></div>
+    </div>
+
+    <!-- command palette template -->
+    <template id="command-palette-res-template">
+      <div
+        class="command-item flex flex-col px-2 py-1 cursor-pointer rounded-lg hover:bg-neutral-700"
+      >
+        <span class="command-title"></span>
+        <span class="command-desc text-sm text-neutral-400"></span>
+      </div>
+    </template>
+
+    <!-- notifications -->
+    <div id="notification" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg p-4 bg-transparent/20 backdrop-blur-sm border hidden opacity-0 transition duration-200">
+      <div id="text">Test notification</div>
+    </div>
+
+    <!-- context menu -->
+    <div id="custom-context-menu" class="hidden fixed z-100 bg-neutral-700 text-white rounded-lg shadow-lg">
+      <ul>
+        <li class="p-1 px-2 hover:bg-neutral-600 cursor-pointer rounded-lg" data-action="new-note"><i class="bi bi-plus-lg text-white"></i> New Note</li>
+        <li class="p-1 px-2 hover:bg-neutral-600 cursor-pointer rounded-lg text-red-500" data-action='delete'><i class="bi bi-trash3 text-red-500"></i> Delete selected Note</li>
+      </ul>
+    </div>    
+
+    <script src="renderer.js" type="module"></script>
+  </body>
+</html>
