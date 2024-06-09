@@ -1,0 +1,39 @@
+{
+  "name": "typovibe",
+  "version": "1.0.0",
+  "description": "A simple and minimalistic Note taking application",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm run build:css && npm run start:electron",
+    "start:electron": "electron .",
+    "build:css": "npx tailwindcss -i ./styles.css -o ./src/styles.css",
+    "build:icons": "./node_modules/.bin/electron-icon-maker -i=./icon2.png -o=./src",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "keywords": [],
+  "license": "Custom",
+  "author": {
+    "name": "Masco",
+    "email": "contact.masco@gmail.com"
+  },
+  "homepage": "https://github.com/m4sc0/typovibe",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^30.1.0",
+    "electron-icon-maker": "^0.0.5",
+    "tailwindcss": "^3.4.4"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "express": "^4.19.2"
+  }
+}

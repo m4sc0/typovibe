@@ -1,0 +1,28 @@
+Custom License for TypoVibe
+
+This software is licensed under the following terms:
+
+1. Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to use
+   the Software, subject to the following conditions:
+
+2. Redistributions of the Software in its original form or modified forms, including
+   source and binary forms, are permitted provided that the following conditions are met:
+   
+   a. Any modifications to the Software must be forked and published to the original 
+      GitHub repository: https://github/com/m4sc0.
+   
+   b. Redistributions of the Software in source or binary forms must retain the above 
+      copyright notice, this list of conditions, and the following disclaimer.
+   
+   c. Any commercial use of this Software must credit the original author: Philip Löbl or Masco.
+   
+3. The above copyright notice and this permission notice shall be included in all copies
+   or substantial portions of the Software.
+
+4. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+   PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+   FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+   OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+   DEALINGS IN THE SOFTWARE.
