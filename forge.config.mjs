@@ -25,7 +25,8 @@ export default {
         options: {
           icon: 'src/icons/png/1024x1024.png',
           maintainer: 'Masco',
-          homepage: 'https://github.com/m4sc0/typovibe'
+          homepage: 'https://github.com/m4sc0/typovibe',
+          version: '1.1.0'
         },
       },
     },
@@ -36,7 +37,8 @@ export default {
           homepage: 'https://github.com/m4sc0/typovibe',
           icon: 'src/icons/png/1024x1024.png',
           name: 'typovibe',
-          productName: "TypoVibe"
+          productName: "TypoVibe",
+          version: '1.1.0'
         }
       },
     },

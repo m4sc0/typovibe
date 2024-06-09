@@ -1,14 +1,21 @@
 import express from 'express';
 import fs from 'fs';
+import { exec } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
 const defaultSettings = {
     autoSave: true,
-    theme: 'dark',
-    keepSession: true,
     defaultNotePath: './notes',
-    localPort: 13395
+    localPort: 13395,
+    commandPalette: {
+        showDescriptions: false
+    }
 };
 
 const defaultSession = {
@@ -81,7 +88,7 @@ app.get('/settings', (req, res) => {
 
 app.post('/settings', (req, res) => {
     saveCurrentSettings(req.body);
-    res.sendStatus(200);
+    res.send(currentSettings());
 });
 
 app.delete('/settings', (req, res) => {
@@ -96,7 +103,7 @@ app.get('/session', (req, res) => {
 
 app.post('/session', (req, res) => {
     saveCurrentSession(req.body);
-    res.sendStatus(200);
+    res.send(currentSession());
 });
 
 app.delete('/session', (req, res) => {
@@ -173,6 +180,34 @@ app.post('/session/notes', (req, res) => {
     saveCurrentSession(curSettings);
 
     res.send(curSettings);
+});
+
+app.get('/open-dir', (req, res) => {
+    const settingsPath = `${__dirname}/settings.json`;
+    const directoryPath = path.dirname(settingsPath);
+
+    let openCommand;
+
+    switch (process.platform) {
+        case 'win32':
+            openCommand = `explorer ${directoryPath}`;
+            break;
+        case 'darwin':
+            openCommand = `open ${directoryPath}`;
+            break;
+        default:
+            openCommand = `xdg-open ${directoryPath}`;
+            break;
+    }
+
+    exec(openCommand, (error) => {
+        if (error) {
+            console.error('Error opening directory:', error);
+            res.status(500);
+        } else {
+            res.status(200);
+        }
+    });
 });
 
 app.get('/restart', (req, res) => {

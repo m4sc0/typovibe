@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+::selection {
+  background-color: rgba(136,0,255,255);
+  color: rgb(255, 255, 255);
+}
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {

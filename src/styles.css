@@ -558,12 +558,20 @@ video {
   position: fixed;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .bottom-5 {
   bottom: 1.25rem;
 }
 
 .left-1\/2 {
   left: 50%;
+}
+
+.right-0 {
+  right: 0px;
 }
 
 .top-10 {
@@ -576,10 +584,6 @@ video {
 
 .mb-2 {
   margin-bottom: 0.5rem;
-}
-
-.mt-auto {
-  margin-top: auto;
 }
 
 .block {
@@ -606,8 +610,8 @@ video {
   width: 16rem;
 }
 
-.w-\[50vw\] {
-  width: 50vw;
+.w-\[70vw\] {
+  width: 70vw;
 }
 
 .w-full {
@@ -653,6 +657,10 @@ video {
   gap: 0.25rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -673,17 +681,16 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-tl-lg {
+  border-top-left-radius: 0.5rem;
+}
+
 .border {
   border-width: 1px;
 }
 
 .border-none {
   border-style: none;
-}
-
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
 .bg-neutral-600 {
@@ -758,9 +765,9 @@ video {
   font-weight: 600;
 }
 
-.text-green-400 {
+.text-green-500 {
   --tw-text-opacity: 1;
-  color: rgb(74 222 128 / var(--tw-text-opacity));
+  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
 .text-neutral-400 {
@@ -813,6 +820,16 @@ video {
 
 .duration-200 {
   transition-duration: 200ms;
+}
+
+::-moz-selection {
+  background-color: rgba(136,0,255,255);
+  color: rgb(255, 255, 255);
+}
+
+::selection {
+  background-color: rgba(136,0,255,255);
+  color: rgb(255, 255, 255);
 }
 
 /* Custom scrollbar styles */
