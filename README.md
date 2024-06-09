@@ -29,6 +29,9 @@ The internal server writes and reads to and from the settings.json/session.json
 
 -  `Ctrl + K` - **Open Command palette**
 
+-  `Ctrl + T` - **Focus title**
+
+-  `Ctrl + B` - **Focus body**
   
 
 ## Features

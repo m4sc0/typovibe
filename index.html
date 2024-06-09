@@ -15,17 +15,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
   </head>
-  <body class="dark-theme bg-neutral-800 w-screen h-screen overflow-hidden">
-    <!-- <nav>
-    <div class="navbar-button"><i class="bi bi-plus-lg"></i></div>
-  </nav> -->
+  <body class="dark-theme bg-neutral-800 w-screen h-screen overflow-hidden" spellcheck="false">
     <div id="app" class="w-full h-full flex">
       <aside class="text-white w-64 overflow-y-auto">
-        <!-- <button id="new-note" class="p-2 bg-blue-500">
-          <i class="bi bi-plus-lg"></i>
-        </button> -->
         <ul id="note-list" class=""></ul>
-        <p id="save-status" class="mt-auto text-sm text-green-400">Saved</p>
       </aside>
       <main id="main" class="p-4 flex-1 flex flex-col overflow-hidden">
         <input
@@ -40,11 +33,16 @@
           class="w-full flex-1 bg-transparent text-white rounded resize-none outline-none border-none overflow-y-auto"
         ></textarea>
       </main>
+      <!-- status -->
+      <div class="fixed bottom-0 right-0 text-neutral-400 p-2 rounded-tl-lg text-sm flex gap-4">
+        <span><span id="counter"></span> Characters</span>
+        <span id="save-status"><i class="bi bi-check-circle text-green-500"></i></span>
+      </div>
     </div>
 
     <div
       id="command-palette"
-      class="fixed top-10 left-1/2 transform -translate-x-1/2 text-white p-2 rounded-xl hidden z-50 w-[50vw] bg-transparent/20 backdrop-blur-sm"
+      class="fixed top-10 left-1/2 transform -translate-x-1/2 text-white p-2 rounded-xl hidden z-50 w-[70vw] bg-transparent/20 backdrop-blur-sm"
     >
       <input
         type="text"
@@ -55,7 +53,7 @@
       <div id="command-results" class="flex flex-col gap-1"></div>
     </div>
 
-    <!-- command palette template -->
+    <!-- command palette result template -->
     <template id="command-palette-res-template">
       <div
         class="command-item flex flex-col px-2 py-1 cursor-pointer rounded-lg hover:bg-neutral-700"

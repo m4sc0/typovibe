@@ -1,6 +1,6 @@
 import commands from './commands.js';
 
-function createCommandPalette() {
+function createCommandPalette(settings) {
   const commandPalette = document.getElementById('command-palette');
   const input = document.getElementById('command-input');
   const results = document.getElementById('command-results');
@@ -17,7 +17,7 @@ function createCommandPalette() {
         const commandElement = document.importNode(template.content, true);
 
         commandElement.querySelector('.command-title').textContent = command.name;
-        commandElement.querySelector('.command-desc').textContent = command.description;
+        if (settings.commandPalette.showDescriptions) commandElement.querySelector('.command-desc').textContent = command.description;
 
         const commandItem = commandElement.querySelector('.command-item');
         commandItem.setAttribute('data-index', i);

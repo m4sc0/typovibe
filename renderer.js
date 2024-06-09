@@ -21,7 +21,13 @@ const setSession = (newSession) => {
   updateNoteList();
 };
 
-let note = {};
+let counter = 0;
+const setCounter = (value) => {
+  counter = value;
+  document.querySelector('#counter').innerHTML = counter;
+}
+
+export let note = {};
 const setNote = (newNote) => {
   if (!newNote) {
     console.error('setNote called with an undefined note');
@@ -30,7 +36,20 @@ const setNote = (newNote) => {
   note = newNote;
   document.querySelector('#main #title').value = note.title || '';
   document.querySelector('#main #body').value = note.body || '';
+
+  setCounter(note.body.length);
 };
+
+const setIsSaved = (value) => {
+  if (settings.autoSave === true) {
+    document.querySelector('#save-status').innerHTML = '<i class="bi bi-check-circle text-green-500"></i> Saved';
+    return;
+  }
+
+  document.querySelector('#save-status').innerHTML = value
+    ? '<i class="bi bi-check-circle text-green-500"></i>'
+    : '<i class="bi bi-x-circle text-red-500"></i>'
+}
 
 let port = 0;
 
@@ -76,7 +95,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Check if session.notes.existing is defined and has elements
   if (session.notes && session.notes.existing && session.notes.existing.length > 0) {
-    setNote(session.notes.existing[0]);
+    const lastNote = session.notes.existing.sort((a, b) => new Date(b.last_modified) - new Date(a.last_modified))[0];
+    setNote(lastNote);
   } else {
     await createNote();
     setSession(await (await fetch(`http://localhost:${port}/session`)).json());
@@ -85,12 +105,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const contextMenu = document.getElementById('custom-context-menu');
 
-  if (settings.autoSave === true) {
-    document.querySelector('#save-status').style.display = 'none';
-  }
-
   document.querySelector('#main #title').addEventListener('input', (e) => {
     note.title = e.target.value;
+    setIsSaved(false);
 
     if (settings.autoSave === true) {
       saveNote();
@@ -99,20 +116,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.querySelector('#main #body').addEventListener('input', (e) => {
     note.body = e.target.value;
+    setCounter(note.body.length)
+    setIsSaved(false);
 
     if (settings.autoSave === true) {
       saveNote();
     }
   });
 
+  // keybindings
   document.addEventListener('keydown', async (e) => {
     if (e.ctrlKey && e.key === 's') {
       e.preventDefault();
       await saveNote();
     }
+
+    if (e.ctrlKey && e.key === 't') {
+      e.preventDefault();
+      document.querySelector('#main #title').focus();
+    }
+
+    if (e.ctrlKey && e.key === 'b') {
+      e.preventDefault();
+      document.querySelector('#main #body').focus();
+    }
   });
 
-  createCommandPalette();
+  createCommandPalette(settings);
 
   document.querySelector('#note-list').addEventListener('click', (e) => {
     if (e.target && e.target.nodeName === "LI") {
@@ -188,8 +218,9 @@ export async function createNote() {
   }
 }
 
-async function saveNote() {
+export async function saveNote() {
   try {
+    note.last_modified = new Date();
     if (note.title === '') note.title = 'Untitled';
     const response = await (await fetch(`http://localhost:${port}/session/notes/${note.id}`, {
       method: 'PUT',
@@ -199,19 +230,26 @@ async function saveNote() {
       body: JSON.stringify(note)
     })).json();
     setSession(response);
-
+    setIsSaved(true);
   } catch (err) {
     notify('Error saving note: ' + err, 'error');
   }
 }
 
-async function deleteNote(id) {
+export async function deleteNote(id) {
   try {
     const response = await (await fetch(`http://localhost:${port}/session/notes/${id}`, {
       method: 'DELETE'
     })).json();
     setSession(response);
-    loadNote(response.notes.existing[0].id)
+
+    if (response.notes.existing.length > 0) {
+      loadNote(response.notes.existing[0].id);
+    } else {
+      await createNote();
+      setSession(await (await fetch(`http://localhost:${port}/session`)).json());
+      setNote(session.notes.existing[0]);
+    }
 
     notify('Successfully deleted note!', 'success');
   } catch (err) {
@@ -251,6 +289,34 @@ export async function restartServer() {
   const response = await fetch(`http://localhost:${port}/restart`);
   if (response.status === 500) {
     notify('Server restarted', 'success');
+  }
+}
+
+export async function toggleDescriptions() {
+  try {
+    settings.commandPalette.showDescriptions = !settings.commandPalette.showDescriptions;
+    const response = await (await fetch(`http://localhost:${port}/settings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(settings)
+    })).json();
+    setSettings(response);
+  } catch (err) {
+    notify('Error toggling descriptions: ' + err, 'error');
+  }
+}
+
+export async function openDirectory() {
+  try {
+    const response = await fetch(`http://localhost:${port}/open-dir`);
+
+    if (response.status === 500) {
+      notify('Failed to open directory!', 'error');
+    }
+  } catch (err) {
+    notify('Failed to open directory: ' + err, 'error');
   }
 }
 
