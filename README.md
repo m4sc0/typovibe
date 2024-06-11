@@ -65,6 +65,10 @@ npm start
 ```
 This will build the tailwind css and launch the application.
 
+## Example image
+
+![image](https://github.com/m4sc0/typovibe/assets/73311544/5ac66137-d579-48c1-b139-268f33be18f4)
+
 ### Contributing
 We welcome contributions from the community! To contribute:
 > - Fork the repository. 
