@@ -26,6 +26,7 @@ The internal server writes and reads to and from the settings.json/session.json
 -  `Ctrl + K` - **Open Command palette**
 -  `Ctrl + T` - **Focus title**
 -  `Ctrl + B` - **Focus body**
+-  `Ctrl + P` - **Toggle Markdown Preview**
 
 ## Features
 > There's a command palette but other than that...
@@ -65,9 +66,9 @@ npm start
 ```
 This will build the tailwind css and launch the application.
 
-## Example image
+## Example GIF
 
-![image](https://github.com/m4sc0/typovibe/assets/73311544/5ac66137-d579-48c1-b139-268f33be18f4)
+![gif](https://github.com/m4sc0/typovibe/assets/73311544/0af7eacc-b3d1-409d-81f0-22ba22e06bfa)
 
 ### Contributing
 We welcome contributions from the community! To contribute:
