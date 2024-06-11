@@ -15,7 +15,8 @@ const defaultSettings = {
     localPort: 13395,
     commandPalette: {
         showDescriptions: false
-    }
+    },
+    theme: 'dark'
 };
 
 const defaultSession = {

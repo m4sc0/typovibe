@@ -1,4 +1,4 @@
-import { createNote, toggleAutoSave, restartServer, notify, note, deleteNote, saveNote, toggleDescriptions, openDirectory } from "./renderer.js";
+import { createNote, toggleAutoSave, restartServer, notify, note, deleteNote, saveNote, toggleDescriptions, openDirectory, setPreviewVisible, isPreviewVisible, switchTheme, settings } from "./renderer.js";
 
 const commands = [
     {
@@ -20,6 +20,20 @@ const commands = [
         description: 'Save the current note',
         execute: () => {
             saveNote();
+        }
+    },
+    {
+        name: 'Settings: Toggle Preview',
+        description: 'Toggle the markdown preview',
+        execute: () => {
+            setPreviewVisible(!isPreviewVisible);
+        }
+    },
+    {
+        name: 'Settings: Toggle theme',
+        description: 'Toggle theme between dark and light mode',
+        execute: () => {
+            switchTheme(settings === 'dark' ? 'light' : 'dark');
         }
     },
     {

@@ -10,7 +10,7 @@ async function isServerAvailable(port) {
   }
 }
 
-let settings = {};
+export let settings = {};
 const setSettings = (newSettings) => {
   settings = newSettings;
 };
@@ -37,8 +37,38 @@ const setNote = (newNote) => {
   document.querySelector('#main #title').value = note.title || '';
   document.querySelector('#main #body').value = note.body || '';
 
+  setPreview(note.title || '', note.body || '');
+
   setCounter(note.body.length);
 };
+
+export let isPreviewVisible = false;
+
+const setPreview = (title, body) => {
+  const content = `# ${title || 'Untitled'}
+
+  ${body}`;
+
+  document.querySelector('#main #preview').innerHTML = marked.parse(content);
+}
+
+export const setPreviewVisible = (value) => {
+    isPreviewVisible = value;
+
+    const button = document.querySelector('#toggle-preview');
+
+    if (value) {
+      document.querySelector('#preview').classList.remove('hidden');
+      document.querySelector('#body').classList.add('monospace-font');
+      button.classList.add('bg-accent');
+      button.classList.remove('bg-color-700');
+    } else {
+      document.querySelector('#preview').classList.add('hidden');
+      document.querySelector('#body').classList.remove('monospace-font');
+      button.classList.remove('bg-accent');
+      button.classList.add('bg-color-700');
+    }
+}
 
 const setIsSaved = (value) => {
   if (settings.autoSave === true) {
@@ -93,6 +123,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   setSettings(await (await fetch(`http://localhost:${port}/settings`)).json());
   setSession(await (await fetch(`http://localhost:${port}/session`)).json());
 
+  document.querySelector('body').classList.add(settings.theme);
+
   // Check if session.notes.existing is defined and has elements
   if (session.notes && session.notes.existing && session.notes.existing.length > 0) {
     const lastNote = session.notes.existing.sort((a, b) => new Date(b.last_modified) - new Date(a.last_modified))[0];
@@ -107,6 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.querySelector('#main #title').addEventListener('input', (e) => {
     note.title = e.target.value;
+    setPreview(note.title, note.body);
     setIsSaved(false);
 
     if (settings.autoSave === true) {
@@ -117,6 +150,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('#main #body').addEventListener('input', (e) => {
     note.body = e.target.value;
     setCounter(note.body.length)
+    setPreview(note.title, note.body);
     setIsSaved(false);
 
     if (settings.autoSave === true) {
@@ -140,6 +174,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       e.preventDefault();
       document.querySelector('#main #body').focus();
     }
+
+    if (e.ctrlKey && e.key === 'p') {
+      e.preventDefault();
+      setPreviewVisible(!isPreviewVisible);
+    }
   });
 
   createCommandPalette(settings);
@@ -150,6 +189,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       loadNote(noteId);
     }
   });
+
+  document.querySelector('#toggle-preview').addEventListener('click', () => {
+    setPreviewVisible(!isPreviewVisible);
+  })
 
   document.addEventListener('contextmenu', (e) => {
     console.log('opened contextmenu');
@@ -212,6 +255,8 @@ export async function createNote() {
     })).json();
     if (response) {
       setSession(response);
+      const lastNote = session.notes.existing.sort((a, b) => new Date(b.last_modified) - new Date(a.last_modified))[0];
+      setNote(lastNote);
     }
   } catch (err) {
     notify('Creating new note failed, ' + err, 'error');
@@ -262,7 +307,7 @@ function updateNoteList() {
   if (session.notes && session.notes.existing) {
     session.notes.existing.forEach(note => {
       noteList += `
-        <li class="w-full pl-2 hover:bg-neutral-700 cursor-pointer select-none" aria-data-id="${note.id}">${note.title}</li>
+        <li id="note-list-item" class="w-full pl-2 hover:bg-color-700 cursor-pointer select-none" aria-data-id="${note.id}">${note.title}</li>
       `;
     });
   }
@@ -317,6 +362,24 @@ export async function openDirectory() {
     }
   } catch (err) {
     notify('Failed to open directory: ' + err, 'error');
+  }
+}
+
+export async function switchTheme(theme) {
+  try {
+    document.querySelector('body').classList.toggle('light');
+    document.querySelector('body').classList.toggle('dark');
+    settings.theme = theme;
+    const response = await (await fetch(`http://localhost:${port}/settings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(settings)
+    })).json();
+    setSettings(response);
+  } catch (err) {
+    notify('Error switching theme: ' + err, 'error');
   }
 }
 

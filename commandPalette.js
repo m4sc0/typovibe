@@ -67,11 +67,11 @@ function createCommandPalette(settings) {
   function setSelection(value) {
     const items = results.querySelectorAll('.command-item');
     if (selection !== -1 && items[selection]) {
-      items[selection].classList.remove('bg-neutral-600', 'hover:bg-neutral-700');
+      items[selection].classList.remove('bg-color-600', 'hover:bg-color-700');
     }
     selection = value;
     if (selection !== -1 && items[selection]) {
-      items[selection].classList.add('bg-neutral-600', 'hover:bg-neutral-700');
+      items[selection].classList.add('bg-color-600', 'hover:bg-color-700');
       items[selection].scrollIntoView({ block: 'nearest' });
     }
   }

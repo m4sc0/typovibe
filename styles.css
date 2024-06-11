@@ -2,27 +2,197 @@
 @tailwind components;
 @tailwind utilities;
 
+:root body.dark {
+  --color-accent: 136 0 255;
+  --color-900: 23 23 23;
+  --color-800: 39 39 42;
+  --color-700: 64 64 64;
+  --color-600: 82 82 82;
+  --color-500: 115 115 115;
+  --color-400: 163 163 163;
+  --color-300: 212 212 212;
+  --color-200: 229 229 229;
+  --color-100: 245 245 245;
+}
+
+:root body.light {
+  --color-accent: 136 0 255;
+  --color-900: 245 245 245;
+  --color-800: 229 229 229;
+  --color-700: 212 212 212;
+  --color-600: 163 163 163;
+  --color-500: 115 115 115;
+  --color-400: 82 82 82;
+  --color-300: 64 64 64;
+  --color-200: 39 39 42;
+  --color-100: 23 23 23;
+}
+
+/* markdown */
+.monospace-font {
+  font-family: monospace;
+}
+
+body, input, textarea {
+  user-select: text;
+}
+
+/* General styles */
+#preview h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+  color: rgb(var(--color-100));
+}
+
+#preview h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+  color: rgb(var(--color-100));
+}
+
+#preview h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  color: rgb(var(--color-100));
+}
+
+#preview h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: rgb(var(--color-100));
+}
+
+#preview h5 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: rgb(var(--color-100));
+}
+
+#preview h6 {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  color: rgb(var(--color-100));
+}
+
+#preview h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+#preview p {
+  margin-bottom: 1rem;
+  color: rgb(var(--color-100));
+}
+
+#preview a {
+  color: rgb(var(--color-accent));
+  text-decoration: none;
+}
+
+#preview a:hover {
+  text-decoration: underline;
+}
+
+/* List styles */
+#preview ul, ol {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  color: rgb(var(--color-100));
+}
+
+#preview li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code and preformatted text */
+#preview pre {
+  background: rgb(var(--color-800));
+  color: rgb(var(--color-300));
+  padding: 1rem;
+  overflow: auto;
+  border-radius: 5px;
+}
+
+#preview code {
+  background: rgb(var(--color-800));
+  color: rgb(var(--color-300));
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Blockquote */
+#preview blockquote {
+  border-left: 4px solid rgb(var(--color-600));
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  color: rgb(var(--color-500));
+}
+
+/* Tables */
+#preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+#preview th, td {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(var(--color-600));
+}
+
+#preview th {
+  background: rgb(var(--color-800));
+  color: rgb(var(--color-300));
+}
+
+#preview td {
+  background: rgb(var(--color-900));
+  color: rgb(var(--color-100));
+}
+
+/* Horizontal Rule */
+#preview hr {
+  border: 0;
+  height: 1px;
+  background: rgb(var(--color-600));
+  margin: 2rem 0;
+}
+
+/* Images */
+#preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Inline HTML elements for emphasis */
+#preview em {
+  font-style: italic;
+}
+
+#preview strong {
+  font-weight: bold;
+}
+
 ::selection {
-  background-color: rgba(136,0,255,255);
+  background-color: rgb(var(--color-accent));
   color: rgb(255, 255, 255);
 }
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #2d2d2d; /* Dark background for scrollbar track */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #888; /* Scrollbar thumb color */
-    border-radius: 10px; /* Round corners */
-    border: 2px solid #2d2d2d; /* Padding around scrollbar thumb */
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Darker thumb on hover */
-  }
-  
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-800));
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-600));
+  border-radius: 10px;
+  border: 2px solid rgb(var(--color-800));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(var(--color-500));
+}

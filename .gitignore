@@ -4,6 +4,9 @@ node_modules/
 dist/
 out/
 
+# code counter
+.VSCodeCounter
+
 output.txt
 session.json
 settings.json
