@@ -26,10 +26,18 @@ The internal server writes and reads to and from the settings.json/session.json
 -  `Ctrl + K` - **Open Command palette**
 -  `Ctrl + T` - **Focus title**
 -  `Ctrl + B` - **Focus body**
+-  `Ctrl + P` - **Toggle Markdown Preview**
 
 ## Features
-> There's a command palette but other than that...
-> But there's a lot more to come!
+> Please refer to commands.js to view all commands in json format
+
+- `Command Palette` - to execute all commands within seconds
+- `Markdown Preview` - to properly design markdown fitting to your needs
+- `Auto-Save` - so you never lose your stuff
+- `Session-based` - take off where you left last time
+
+### Themes
+> Currently, there are two color themes available (light/dark) but i'm planning on implementing a lot more cool color themes.
 
 ## Installation  
 ### Prerequisites
@@ -40,7 +48,7 @@ The internal server writes and reads to and from the settings.json/session.json
 To get started, fork the repository and then clone it locally:
 
 ```sh
-git clone https://github.com/yourusername/typovibe.git
+git clone https://github.com/{username}/typovibe.git
 cd typovibe
 ```
 
@@ -65,9 +73,9 @@ npm start
 ```
 This will build the tailwind css and launch the application.
 
-## Example image
+## Example GIF
 
-![image](https://github.com/m4sc0/typovibe/assets/73311544/5ac66137-d579-48c1-b139-268f33be18f4)
+![gif](https://github.com/m4sc0/typovibe/assets/73311544/0af7eacc-b3d1-409d-81f0-22ba22e06bfa)
 
 ### Contributing
 We welcome contributions from the community! To contribute:
