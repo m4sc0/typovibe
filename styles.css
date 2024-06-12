@@ -33,7 +33,9 @@
   font-family: monospace;
 }
 
-body, input, textarea {
+body,
+input,
+textarea {
   user-select: text;
 }
 
@@ -74,7 +76,12 @@ body, input, textarea {
   color: rgb(var(--color-100));
 }
 
-#preview h1, h2, h3, h4, h5, h6 {
+#preview h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
 }
 
@@ -93,7 +100,8 @@ body, input, textarea {
 }
 
 /* List styles */
-#preview ul, ol {
+#preview ul,
+ol {
   margin: 1rem 0;
   padding: 0 1rem;
   color: rgb(var(--color-100));
@@ -117,7 +125,7 @@ body, input, textarea {
   color: rgb(var(--color-300));
   padding: 0.2rem 0.4rem;
   border-radius: 3px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 /* Blockquote */
@@ -135,7 +143,8 @@ body, input, textarea {
   margin: 1rem 0;
 }
 
-#preview th, td {
+#preview th,
+td {
   padding: 0.5rem 1rem;
   border: 1px solid rgb(var(--color-600));
 }

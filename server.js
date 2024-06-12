@@ -145,7 +145,7 @@ app.put('/session/notes/:id', (req, res) => {
 app.delete('/session/notes/:id', (req, res) => {
     const curSession = currentSession();
     const { id } = req.params;
-    
+
     const noteIndex = curSession.notes.existing.findIndex(note => note.id == id);
     if (noteIndex !== -1) {
         curSession.notes.existing.splice(noteIndex, 1);
