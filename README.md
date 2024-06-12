@@ -29,8 +29,15 @@ The internal server writes and reads to and from the settings.json/session.json
 -  `Ctrl + P` - **Toggle Markdown Preview**
 
 ## Features
-> There's a command palette but other than that...
-> But there's a lot more to come!
+> Please refer to commands.js to view all commands in json format
+
+- `Command Palette` - to execute all commands within seconds
+- `Markdown Preview` - to properly design markdown fitting to your needs
+- `Auto-Save` - so you never lose your stuff
+- `Session-based` - take off where you left last time
+
+### Themes
+> Currently, there are two color themes available (light/dark) but i'm planning on implementing a lot more cool color themes.
 
 ## Installation  
 ### Prerequisites
@@ -41,7 +48,7 @@ The internal server writes and reads to and from the settings.json/session.json
 To get started, fork the repository and then clone it locally:
 
 ```sh
-git clone https://github.com/yourusername/typovibe.git
+git clone https://github.com/{username}/typovibe.git
 cd typovibe
 ```
 
